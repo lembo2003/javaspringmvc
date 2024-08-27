@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -53,4 +54,12 @@ public class UserController {
         this.userService.handSaveUser(hoidanit);
         return "redirect:/admin/user";
     }
+
+    @RequestMapping("/admin/user/{lemboid}")
+    public String getAdminUserDetailPage(Model model, @PathVariable long lemboid) {
+        System.out.println("Check path id=" + lemboid);
+        model.addAttribute("id", lemboid);
+        return "admin/user/show";
+    }
+
 }
